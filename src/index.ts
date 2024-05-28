@@ -1,11 +1,13 @@
 import express from 'express';
 import { IFootballPlayer, players } from './db';
+import cors from 'cors';
 
 const app = express()// Read players based on team and position
 
 const port = 3000
 
 app.use(express.json())
+app.use(cors());
 
 // Read all players
 app.get('/players', (req: any, res: any) => {
