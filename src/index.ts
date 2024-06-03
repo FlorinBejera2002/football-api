@@ -52,6 +52,10 @@ app.post('/players', (req: any, res: any) => {
     return res.status(400).json({ message: 'Invalid player data' })
   }
 
+  if (newPlayer.id) {
+    return res.status(400).json({ message: 'Id should NOT be passed' })
+  }
+
   // Get the highest ID from the players array
   const highestId = players.reduce((maxId, player) => Math.max(maxId, player.id), 0);
 
@@ -66,6 +70,10 @@ app.post('/players', (req: any, res: any) => {
 app.put('/players/:id', (req: any, res: any) => {
   const id = parseInt(req.params.id)
   const updatedPlayer: IFootballPlayer = req.body
+
+  if (newPlayer.id) {
+    return res.status(400).json({ message: 'Id should NOT be passed' })
+  }
 
   const index = players.findIndex((item: IFootballPlayer) => item.id === id)
   if (index !== -1) {
