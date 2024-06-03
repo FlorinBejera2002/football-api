@@ -71,7 +71,7 @@ app.put('/players/:id', (req: any, res: any) => {
   const id = parseInt(req.params.id)
   const updatedPlayer: IFootballPlayer = req.body
 
-  if (newPlayer.id) {
+  if (updatedPlayer.id) {
     return res.status(400).json({ message: 'Id should NOT be passed' })
   }
 
