@@ -69,14 +69,15 @@ app.post('/players', (req: any, res: any) => {
 // Update a player
 app.put('/players/:id', (req: any, res: any) => {
   const id = parseInt(req.params.id)
-  const updatedPlayer: IFootballPlayer = req.body
+  const toUpdate: IFootballPlayer = req.body
 
-  if (updatedPlayer.id) {
+  if (toUpdate.id) {
     return res.status(400).json({ message: 'Id should NOT be passed' })
   }
 
   const index = players.findIndex((item: IFootballPlayer) => item.id === id)
   if (index !== -1) {
+    const updatedPlayer =  {...players[index], ...toUpdate}
     players[index] = updatedPlayer
     res.json(updatedPlayer)
   } else {
